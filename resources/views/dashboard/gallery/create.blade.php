@@ -51,6 +51,8 @@ select{
 @section('content')
 {{-- {!!Form::open(['method'=>'POST','action'=>'ImageController@store', 'files'=>true])!!}
 
+
+
 <div class="col-sm-offset-3 col-sm-6 col-sm-offset-3">
 <div class="form-group">
 {!!Form::label('image','Insert Images:')!!}
@@ -81,6 +83,24 @@ select{
 
 
 {{-- <div class="col-sm-offset-3 col-sm-6 col-sm-offset-3"> --}}
+
+
+
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+    <div class="panel-heading"><strong><h4>Add Image to Gallery</strong></h4></div>
+    <div class="panel-body">
+
+
+
+
+
+
+
+
+
 
 {!!Form::open(['method'=>'POST','action'=>'ImageController@store', 'files'=>true])!!}
 
@@ -116,6 +136,21 @@ select{
 </div>
 
 {!!Form::close()!!}
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
 
 {{-- </div> --}}
 

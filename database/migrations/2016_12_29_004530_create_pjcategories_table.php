@@ -16,6 +16,7 @@ class CreatePjcategoriesTable extends Migration
         Schema::create('pjcategories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('category');
+            $table->string('slug');
             $table->timestamps();
         });
     }

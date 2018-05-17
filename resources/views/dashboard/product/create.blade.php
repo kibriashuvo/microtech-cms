@@ -7,6 +7,14 @@ Create Product
 @stop
 
 @section('content')
+
+<div class="container">
+<div class="row">
+<div class="col-md-10 col-sm-offset-1">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4><strong>Create Product</strong></h4></div>
+        <div class="panel-body">
+
 {!!Form::open(['method'=>'POST','action'=>'ProductsController@store', 'files'=>true])!!}
 
 <div class="col-sm-offset-3 col-sm-6 col-sm-offset-3">
@@ -67,7 +75,18 @@ Create Product
 </div>
 
 {!!Form::close()!!}
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
 @stop
+
+
+
 
 {{-- @if (count($errors) > 0)
     <div class="alert alert-danger">
@@ -80,3 +99,6 @@ Create Product
 @endif --}}
 
 {{-- </div> --}}
+
+
+

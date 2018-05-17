@@ -5,7 +5,20 @@ Create Product
 @stop
 
 
+
+
 @section('content')
+
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+    <div class="panel-heading"><h4><strong>Edit Product</strong></h4></div>
+    <div class="panel-body">
+
+
+
+
 {!!Form::model($product,['method'=>'PATCH','action'=>['ProductsController@update', $product->id],'files'=>true])!!}
 
 
@@ -61,7 +74,7 @@ w  </span>
 
 
 
-<div class="row col-sm-offset-3 col-sm-6 col-sm-offset-3">
+<div class="row col-sm-offset-3 col-sm-9 col-sm-offset-3">
 {!!Form::submit('Update Product',['class'=>'btn btn-primary col-sm-3 pull-left'])!!}
 {!!Form::close()!!}
 
@@ -72,4 +85,11 @@ w  </span>
 </div>
 {!!Form::close()!!}
  --}}</div>
+
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ 
 @endsection

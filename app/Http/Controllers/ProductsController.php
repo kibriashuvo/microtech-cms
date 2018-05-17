@@ -328,7 +328,7 @@ class ProductsController extends Controller
 
         if(File::exists(public_path().$product->path)){         //if image file exists
         unlink(public_path().$product->path);
-        return "ok";
+     //   return "ok";
             }
         }
         
@@ -368,11 +368,16 @@ class ProductsController extends Controller
             'category'=>'required',
             ]);
         
-        $input = $request->all();
-        
+        //============Slugging=============
+
+        $cat = $request->input('category');
+       
+
         $pdc = Pdcategory::findOrFail($id);
+        $pdc->slug = null;
+        $pdc->update(['category' => $cat]);
         
-        $pdc->update($input);
+        //==================================
 
         Session::flash('updated_category','Category has been renamed successfully!');
         return redirect()->route('pdc.index'); 
@@ -380,7 +385,7 @@ class ProductsController extends Controller
     }
 
 
-    public function populate_public_page_products($cat=null){
+ /*   public function populate_public_page_products($cat=null){
         do{
              $categories = Pdcategory::all();
 
@@ -388,13 +393,40 @@ class ProductsController extends Controller
                     $cat = 1;
 
                 $products = Product::where('pdcategory_id', $cat)
-                                       ->orderBy('name')->paginate(2);
+                                       ->orderBy('name')->paginate(4);
 
             return view('products',array('datas' => $categories, 'products' => $products ));
 
             }while($cat!=null);
         
             
-        }
+        }*/
+
+        public function populate_public_page_products($slug=null){
+        
+             $categories = Pdcategory::all();
+
+                if($slug==null){
+                    $first_one = Pdcategory::first();
+                    $url =  $first_one->slug;
+                    $cat = $first_one->id;
+
+                }else{
+                    $row = Pdcategory::findBySlugOrFail($slug);
+                    $cat = $row->id;
+                }
+                   
+
+                $products = Product::where('pdcategory_id', $cat)
+                                       ->orderBy('name')->paginate(4);
+                
+                
+
+                return view('products',array('datas' => $categories, 'products' => $products ));
+
+            }
+        
+            
+        
 
 }

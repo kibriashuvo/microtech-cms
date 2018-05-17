@@ -39,9 +39,13 @@ Products
 </div>
 @endif
 
+<div class="container">
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default">
+    <div class="panel-heading"><h4><strong>Product List</strong></h4></div>
+    <div class="panel-body">
 
-
-<div class="col-md-8 col-md-offset-2">
    @if(count($products)>0)
 
     <div class="table-responsive">
@@ -88,7 +92,7 @@ Products
                                 <span class="glyphicon glyphicon-warning-sign"></span> <strong> Are you sure you want to delete this project?<br>Name: {{$product->name}}<br> Category: {{$product->pdcategory->category}}</strong>
                                 </p>
                                 <p>
-                                <img style="height:120px; width: auto;" src="{{file_exists(public_path($product->path))? asset($product->path) : asset('/gallery-images/no-image-available.jpg')}} ">
+                                <img style="height:120px; width: auto;" src="{{file_exists(public_path($product->path))? asset($product->path) : asset('admin-assets/img/no-image-available.jpg')}} ">
                                 </p>
                                 </div>
                                 
@@ -111,7 +115,7 @@ Products
 
                                       <tr style="height:50px;">
                                           <td>{{(($products->currentPage() - 1 ) * $products->perPage()) + $count}}</td>
-                                          <td><img height=50 src="{{file_exists(public_path($product->path))? asset($product->path) : asset('/gallery-images/no-image-available.jpg')}}"></td>
+                                          <td><img height=50 src="{{file_exists(public_path($product->path))? asset($product->path) : asset('admin-assets/img/no-image-available.jpg')}}"></td>
                                           <td>{{$product->name}}</td>
                                           <td>{{$product->pdcategory->category}}</td>
                                           <td>{{$product->details}}</td>                    
@@ -140,6 +144,12 @@ Products
 @else <div class="row text-center"><h4><strong>No Product Found</strong></h4></div>
 @endif
             </div>
+            </div>
+</div>
+</div>
+</div>
+</div>
+
 
                         {{--   <tr></tr>
                           <tr>
@@ -155,5 +165,9 @@ Products
 
 
 
-</div>
+
+
+
+
+
 @stop

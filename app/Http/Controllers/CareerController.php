@@ -11,10 +11,81 @@ use File;
 use App\Cv;
 use App\Job;
 use App\Internship;
+use Mail;
 
 class CareerController extends Controller
 {
     //
+
+
+    public function send_cv_mail_public(Request $req){
+    	$name = $req->input('name');
+		$email = $req->input('email');
+		$address = $req->input('address');
+		$post = $req->input('post');
+
+		//=========validation======
+		 $rules = array(
+            'file' => 'required|mimes:doc,pdf,docx,ppt,pptx|max:2048',
+            'email'=> 'required',
+            'post'=> 'required',
+            'name'=> 'required',
+         
+        ); 
+
+		$validator = Validator::make(Input::all(),$rules);
+
+		  if($validator->fails()){
+
+            Session::flash('error','File size should not exceed 2MB & file type must be of (doc/pdf/ppt)');
+       		return redirect('career-cv');
+        }
+
+
+
+
+ //===============Mail===============================
+
+       $subject = 'Applicant for the post of : '.$post;
+
+        $file_name = Input::file('file')->getClientOriginalName();
+        $extension = Input::file('file')->getClientOriginalExtension();
+
+        $attach_name = $file_name.'.'.$extension;
+
+       $data = array(
+                  'name' => $name,
+                  'post' => $post,
+                  'address' => $address,
+                  'email' => $email            
+                  
+       );
+
+         Mail::queue('mail_template_cv',$data, function ($message) use($subject,$file_name){
+                  
+
+
+                 
+            $file = Input::file('file');
+
+         
+                      $message->from('golamkibriashuvo@gmail.com','CV-Bot');
+
+                      $message->to('kibria.shuvo@northsouth.edu')->subject($subject);
+
+                      $message->attach($file,array('as' => $file_name, 'mime' => 'application/pdf,doc,docx'));
+              });
+
+     
+        Session::flash('cv_uploaded','Thanks for submitting your CV');
+        return redirect('career-cv');
+
+
+    }
+
+
+
+//==============To CMS===================
 	public function save_cv(Request $req){
 		$name = $req->input('name');
 		$email = $req->input('email');
@@ -23,7 +94,10 @@ class CareerController extends Controller
 
 		//=========validation======
 		 $rules = array(
-            'file' => 'required|mimes:doc,pdf,docx,ppt,pptx|max:2048'
+            'file' => 'required|mimes:doc,pdf,docx,ppt,pptx|max:2048',
+            'email'=> 'required',
+            'post'=> 'required',
+            'name'=> 'required',
          
         ); 
 

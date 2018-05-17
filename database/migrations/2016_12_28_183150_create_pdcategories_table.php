@@ -16,6 +16,7 @@ class CreatePdcategoriesTable extends Migration
         Schema::create('pdcategories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('category');
+            $table->string('slug');
             $table->timestamps();
         });
     }

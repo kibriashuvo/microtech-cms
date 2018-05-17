@@ -117,71 +117,33 @@
       </div>
     <div id="main">
         <div class="container">
+         @if (count($datas)===0)
+                        <div class="alert alert-info" role="alert">
+                              <p align="center"><strong>Sorry!!</strong> Currently there are no images in Gallery!!!</p>
+                        </div>
+            @endif
 
             <section id="advanced-usage">
                 <div id="grid" class="clearfix">
+                @foreach($datas as $data)
+               
                     <div class="box item beach">
-                        <a href="http://swipebox.brutaldesign.com/assets/full/nuke.jpg" class="shinybox-isotope" title="Nuke">
-                            <img src="http://swipebox.brutaldesign.com/assets/nuke_thumb.jpg" alt="nuke">
+                        <a href="{{asset($data->path)}}" class="shinybox-isotope" title='Gallery'>
+                            <img src="{{file_exists(public_path($data->path))? asset($data->path) : asset('admin-assets/img/no-image-available.jpg')}}">
                         </a>
                     </div>
-                    <div class="box item sea">
-                        <a href="http://swipebox.brutaldesign.com/assets/full/leap.jpg" class="shinybox-isotope" title="Leap">
-                            <img src="http://swipebox.brutaldesign.com/assets/leap_thumb.jpg" alt="leap">
-                        </a>
-                    </div>
-                    <div class="box item beach">
-                        <a href="http://swipebox.brutaldesign.com/assets/full/reine.jpg" class="shinybox-isotope" title="Reine">
-                            <img src="http://swipebox.brutaldesign.com/assets/reine_thumb.jpg" alt="reine">
-                        </a>
-                    </div>
-                    <div class="box item sea">
-                        <a href="http://swipebox.brutaldesign.com/assets/full/neptune.jpg" class="shinybox-isotope" title="Neptune">
-                            <img src="http://swipebox.brutaldesign.com/assets/neptune_thumb.jpg" alt="neptune">
-                        </a>
-                    </div>
-                    <div class="box item beach">
-                        <a href="http://swipebox.brutaldesign.com/assets/full/nuke.jpg" class="shinybox-isotope" title="Nuke">
-                            <img src="http://swipebox.brutaldesign.com/assets/nuke_thumb.jpg" alt="nuke">
-                        </a>
-                    </div>
-                    <div class="box item sea">
-                        <a href="http://swipebox.brutaldesign.com/assets/full/leap.jpg" class="shinybox-isotope" title="Leap">
-                            <img src="http://swipebox.brutaldesign.com/assets/leap_thumb.jpg" alt="leap">
-                        </a>
-                    </div>
-                    <div class="box item beach">
-                        <a href="http://swipebox.brutaldesign.com/assets/full/reine.jpg" class="shinybox-isotope" title="Reine">
-                            <img src="http://swipebox.brutaldesign.com/assets/reine_thumb.jpg" alt="reine">
-                        </a>
-                    </div>
-                    <div class="box item sea">
-                        <a href="http://swipebox.brutaldesign.com/assets/full/neptune.jpg" class="shinybox-isotope" title="Neptune">
-                            <img src="http://swipebox.brutaldesign.com/assets/neptune_thumb.jpg" alt="neptune">
-                        </a>
-                    </div>
-                    <div class="box item beach">
-                        <a href="http://swipebox.brutaldesign.com/assets/full/nuke.jpg" class="shinybox-isotope" title="Nuke">
-                            <img src="http://swipebox.brutaldesign.com/assets/nuke_thumb.jpg" alt="nuke">
-                        </a>
-                    </div>
-                    <div class="box item sea">
-                        <a href="http://swipebox.brutaldesign.com/assets/full/leap.jpg" class="shinybox-isotope" title="Leap">
-                            <img src="http://swipebox.brutaldesign.com/assets/leap_thumb.jpg" alt="leap">
-                        </a>
-                    </div>
-                    <div class="box item beach">
-                        <a href="http://swipebox.brutaldesign.com/assets/full/reine.jpg" class="shinybox-isotope" title="Reine">
-                            <img src="http://swipebox.brutaldesign.com/assets/reine_thumb.jpg" alt="reine">
-                        </a>
-                    </div>
-                    <div class="box item sea">
-                        <a href="http://swipebox.brutaldesign.com/assets/full/neptune.jpg" class="shinybox-isotope" title="Neptune">
-                            <img src="http://swipebox.brutaldesign.com/assets/neptune_thumb.jpg" alt="neptune">
-                        </a>
-                    </div>
+                    
+                @endforeach
+
+
+                  
                 </div>
+
             </section>
+            <div class="col-md-12 col-md-offset-5">
+                {!! $datas->links() !!}
+            </div>
+             
         </div>
     </div>
 

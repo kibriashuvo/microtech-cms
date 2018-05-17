@@ -23,9 +23,17 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
- 
+
+ <style type="text/css">
+     .navbar {min-height:100px !important;}
+ </style> 
 </head>
 <body>
+
+
+
+
+
     
     <div class="navbar navbar-inverse set-radius-zero">
         <div class="container">
@@ -127,7 +135,7 @@
                                             <li class="dropdown-ul-li"><a href="{{url('/vacancy_list')}}">Vacancy List</a></li>
                                             <li class="dropdown-ul-li"><a href="{{url('/post_new_internship')}}">Post Internship Advertisement</a></li>
                                             <li class="dropdown-ul-li"><a href="{{url('/internship_list')}}">Internship List</a></li>
-                                            <li class="dropdown-ul-li"><a href="{{url('/view_applicants')}}">View Uploaded CV</a></li>
+                             <!--               <li class="dropdown-ul-li"><a href="{{url('/view_applicants')}}">View Uploaded CV</a></li> -->
 
                                 </ul>
                             </li>
@@ -147,15 +155,25 @@
 
 
 
-                            <li><a href="{{url('/view_messages')}}"> <i class="fa fa-envelope" aria-hidden="true"></i> email</a>
+                   <!--         <li><a href="{{url('/view_messages')}}"> <i class="fa fa-envelope" aria-hidden="true"></i> email</a>
                             </li>
-
+                    -->
                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::guest() ? 'Admin' : Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                   
+
+
+                                    <li class="dropdown-ul-li">
+                                    <a href="{{ route('password.change') }}">
+                                        Change Password
+                                    <i class="fa fa-key" aria-hidden="true"></i> 
+                                    </a>
+                                    </li>
+
                                     <li class="dropdown-ul-li">
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
@@ -167,6 +185,8 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+
+
                                 </ul>
                             </li>
                         </ul>
@@ -178,10 +198,17 @@
     </section>
     <!-- MENU SECTION END-->
           <div class="row">
+              @if(Session::has('password_changed'))
+                    <div class="alert alert-info" style="text-align:center;">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>{{session('password_changed')}}</strong>
+                    </div>
+                @endif
             
             @if(Session::has('welcome'))
                 <div class="col-md-12 text-center">
-                    <div class="alert alert-success">
+                    <div class="alert alert-info">
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         <strong>Welcome!</strong>
                     </div>
                 </div>
@@ -240,7 +267,13 @@
     <script src="{{asset('admin-assets/js/jquery-1.11.1.js')}}"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="{{asset('admin-assets/js/bootstrap.js')}}"></script>
-
+    <script type="text/javascript">
+        window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+        });
+        }, 5000);
+    </script>
     @yield('script')
 
 </body>

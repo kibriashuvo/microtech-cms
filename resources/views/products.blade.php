@@ -37,6 +37,16 @@
         .padding-top {
             padding-top: 80px;
         }
+        img {
+          display: block;
+          max-width:391.25px;
+          max-height:260.83px;
+          width: auto;
+          height: auto;
+        }
+
+
+
     </style>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -122,7 +132,7 @@
                             @foreach($datas as $data)
                                 
                                 <li>
-                                    <a href="{{ url('products',$data->id) }}">{{$data->category}}
+                                    <a href="{{ url('products',$data->slug) }}">{{$data->category}}
                                     <span class="fa fa-angle-right pull-right"></span>
                                 </a>
                                 </li>
@@ -135,7 +145,7 @@
 
                             <!--Service Post-->
                         @if (count($products)===0)
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-info" role="alert">
                               <p align="center"><strong>Sorry!!</strong> There are no Products under this category!!!</p>
                         </div>
                         @else
@@ -147,7 +157,7 @@
                                 <div class="post-inner anim-5-all">
 
                                     <figure class="image">
-                                        <img src="{{$product->path ? asset($product->path) : 'http://placehold.it/400x400'}}" title="">
+                                        <img src="{{file_exists(public_path($product->path))? asset($product->path) : asset('admin-assets/img/no-image-available.jpg')}}" title="">
 
                                     </figure>
                                     <div class="content">

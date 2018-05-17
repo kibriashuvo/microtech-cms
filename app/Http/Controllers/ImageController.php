@@ -215,4 +215,11 @@ class ImageController extends Controller
         return redirect()->route('dashboard-gallery.index');
 
     }
+
+    public function populate_public_page_gallery(){
+        $images = Image::paginate(12);
+
+        return view('gallery')->with('datas',$images);
+    }
+
 }

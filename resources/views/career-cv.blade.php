@@ -16,6 +16,15 @@
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="css/form.css">
 
+       <!--    google fonts exo-->
+   <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
+    
+    
+    
+    <link href="css/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+
+
     <style media="screen">
         .padding-top {
             padding-top: 80px;
@@ -209,7 +218,7 @@
                         </nav>
                          @if(Session::has('error'))
 
-                          <div class="col-md-7 col-md-offset-1 alert alert-success alert-dismissable">
+                          <div class="col-md-7 col-md-offset-1 alert alert-danger alert-dismissable">
                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                <p align="center"><strong>Upload error!</strong> {{session('error')}}</p>
                           </div>
@@ -227,21 +236,21 @@
 
                         <!--Service Posts-->
                         <div class="service-posts clearfix col-md-9 col-sm-12">
-                          <form id="contact-form" class="form-horizontal" role="form" method="POST" action="{{ url('/drop_cv') }}" enctype="multipart/form-data">
+                          <form id="contact-form" class="form-horizontal" role="form" method="POST" action="{{ url('/send_cv_mail') }}" enctype="multipart/form-data">
                                   {!! csrf_field() !!} 
                                   <label for="name">Full Name:</label>
-                                  <input type="text" id="name" name="name">
+                                  <input type="text" id="name" name="name" required="true">
 
-                                  <label for="name">Email:</label>
-                                  <input type="text" id="email" name="email">
+                                  <label for="email">Email:</label>
+                                  <input type="email" id="email" name="email" required="true">
 
                                   <label for="address">Address:</label>
                                   <input type="text" id="address" name="address">
 
                                   <label for="post">Post for which job you wish to apply:</label>
-                                  <input type="text" id="post" name="post">
+                                  <input type="text" id="post" name="post" required="true">
 
-                                  <input type="file" name="file" id="file-1" class="inputfile inputfile-1">
+                                  <input type="file" name="file" id="file-1" class="inputfile inputfile-1" required="true">
 					                        <label for="file-1">
                                   <span class="label-span">Upload Your CV</span></label>
 

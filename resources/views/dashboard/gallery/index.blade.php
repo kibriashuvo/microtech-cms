@@ -26,6 +26,15 @@ Photo List
 
 
 		@if(count($images)>0)
+
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+    <div class="panel panel-default">
+    <div class="panel-heading"><strong><h4>Photo List</strong></h4></div>
+    <div class="panel-body">
+
+
 		<div class="row container-fluid">
 			@foreach($images as $image)
 
@@ -48,7 +57,7 @@ Photo List
                                 <span class="glyphicon glyphicon-warning-sign"></span> <strong> Are you sure you want to delete this image?</strong>
                                 </p>
                                 <p>
-                                <img style="height:120px; width: auto;" src="{{file_exists(public_path($image->path))? asset($image->path) : asset('/gallery-images/no-image-available.jpg')}} ">
+                                <img style="height:120px; width: auto;" src="{{file_exists(public_path($image->path))? asset($image->path) : asset('admin-assets/img/no-image-available.jpg')}} ">
                                 </p>
                                 </div>
                             </div>
@@ -69,9 +78,10 @@ Photo List
 
 
 
+
 			  <div class="col-sm-6 col-md-3">
 			    <div class="thumbnail" style="border: 1px solid #164377;">
-			      <img style="height: 150px;" class="img-responsive" src="{{file_exists(public_path($image->path))? asset($image->path) : asset('/gallery-images/no-image-available.jpg')}}  " alt="...">
+			      <img style="height: 150px;" class="img-responsive" src="{{file_exists(public_path($image->path))? asset($image->path) : asset('admin-assets/img/no-image-available.jpg')}}  " alt="...">
 			      <div class="caption">
 			        {{-- <h3>Thumbnail label</h3> --}}
 			        {{-- <p>...</p> --}}
@@ -84,13 +94,22 @@ Photo List
 			  </div>
 			@endforeach
 		</div>
+
 		<div class="container-fluid col-md-offset-5 col-md-5">
 		{{$images->links()}}
 		</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
 		@else
-			<div class="text-center">
-				No image found.
-			</div>
+		<div class="row text-center"><h4><strong>No Photo Found</strong></h4></div>
 		@endif
 
 

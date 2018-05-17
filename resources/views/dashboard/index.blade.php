@@ -193,9 +193,10 @@ Dashoboard
                         <div class="row collapsebtn">
                         <a href="/internship_list">Internship List</a>
                         </div>
-                        <div class="row collapsebtn">
+                 <!--       <div class="row collapsebtn">
                         <a href="/view_applicants">View Uploaded CV</a>
                         </div>
+                -->
                     </div>
                     {{-- dropdown --}}
 

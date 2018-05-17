@@ -6,6 +6,14 @@ Rename Category
 
 @section('content')
 
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+    <div class="panel-heading"><h4><strong>Edit Product Category</strong></h4></div>
+    <div class="panel-body">
+
+
 <div class="col-sm-offset-3 col-sm-6 col-sm-offset-3">
 
 {!!Form::model($pdc,['method'=>'POST', 'route'=>['pdc.update',$pdc->id]])!!}
@@ -18,8 +26,9 @@ Rename Category
   </span>
 @endif
 </div>
+</div>
 
-
+<div class="col-sm-offset-3 col-sm-8 col-sm-offset-3">
 {!!Form::submit('Rename Category',['class'=>'btn btn-primary col-sm-4 pull-left'])!!}
 {!!Form::close()!!}
 {{-- 
@@ -29,5 +38,13 @@ Rename Category
 
 
 </div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
 
 @endsection

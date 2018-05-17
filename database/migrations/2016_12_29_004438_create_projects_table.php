@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->text('details');
             // $table->integer('pjcategory_id')->nullable();
+            $table->string('slug');
             $table->string('path')->nullable();
             $table->timestamps();
         });

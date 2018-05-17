@@ -28,6 +28,14 @@
         padding-top: 80px;
       }
 
+      img {
+  display: block;
+  max-width:484.44px;
+  max-height:322.22px;
+  width: auto;
+  height: auto;
+}
+
     </style>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -125,7 +133,7 @@
                 
                 <figure class="image">
                     <div class="image-wrapper">
-                    <img class="img-responsive" src="{{file_exists(public_path($project->path))? asset($project->path) : asset('/gallery-images/no-image-available.jpg')}} " alt="" title="">
+                    <img class="img-responsive" src="{{file_exists(public_path($project->path))? asset($project->path) : asset('admin-assets/img/no-image-available.jpg')}}" alt="" title="">
                    
                     </div>
                 </figure>
@@ -146,7 +154,7 @@
 
 
 @else               
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-info" role="alert">
                               <p align="center"><strong>Sorry!!</strong> Currently there are no Projects!!!</p>
                     </div>
 

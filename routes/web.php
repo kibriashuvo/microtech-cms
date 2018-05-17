@@ -16,91 +16,22 @@
 //});
 
 
+Auth::routes();
+
+
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.token');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+
+Route::group(['middleware' => ['auth']], function () {
+    
 
 Route::get('/dashboard', ['as'=>'dashboard.index', function () {
     return view('dashboard.index');
     // return view('layouts.admin');
 }]);
-
-
-
-
-Auth::routes();
-
-
-//dashboard-products
-Route::resource('/dashboard-products', 'ProductsController');
-Route::get('/product-category',['as'=>'pdc.index','uses'=>'ProductsController@pdcindex']);
-Route::get('/rename-product-category/{pdc}',['as'=>'pdc.rename','uses'=>'ProductsController@pdcrename']);
-Route::post('/update-product-category/{pdc}',['as'=>'pdc.update','uses'=>'ProductsController@pdcupdate']);
-
-//dashboard-projects
-Route::resource('/dashboard-projects', 'ProjectsController');
-Route::get('/project-category',['as'=>'pjc.index','uses'=>'ProjectsController@pjcindex']);
-Route::get('/rename-project-category/{pjc}',['as'=>'pjc.rename','uses'=>'ProjectsController@pjcrename']);
-Route::post('/update-project-category/{pjc}',['as'=>'pjc.update','uses'=>'ProjectsController@pjcupdate']);
-
-
-Route::resource('/dashboard-gallery', 'ImageController');
-
-Route::get('/home', 'HomeController@index');
-
-
-
-
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('about_us',function(){
-    return view('about_us');
-});
-
-Route::get('projects/',['as'=>'projects.sorted','uses'=>'ProjectsController@populate_public_page_projects']);
-
-Route::get('services',function(){
-    return view('services');
-});
-
-
-Route::get('products/{cat?}',['as'=>'products.catwise','uses'=>'ProductsController@populate_public_page_products']);
-
-
-
-
-Route::get('career','CareerController@populate_public_page_job');
-
-
-
-Route::get('career-cv',function(){
-    return view('career-cv');
-});
-
-
-
-Route::get('internship','CareerController@populate_public_page_internship');
-
-
-
-
-Route::get('gallery',function(){
-    return view('gallery');
-});
-
-
-Route::get('contact-us',function(){
-    return view('contact-us');
-});
-
-
-Route::post('drop_cv','CareerController@save_cv');
-
-
-Route::post('message','MessageController@send_feedback');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
 
 //=======================CMS=======================
 
@@ -151,3 +82,89 @@ Route::post('internship_list_button','CareerController@internship_list_button');
 Route::post('save_internship_details','CareerController@save_internship_details');
 
 Route::post('edit_internship_details/{id}',['as'=>'internship.edit','uses'=>'CareerController@edit_internship_details']);
+
+
+
+
+//dashboard-products
+Route::resource('/dashboard-products', 'ProductsController');
+Route::get('/product-category',['as'=>'pdc.index','uses'=>'ProductsController@pdcindex']);
+Route::get('/rename-product-category/{pdc}',['as'=>'pdc.rename','uses'=>'ProductsController@pdcrename']);
+Route::post('/update-product-category/{pdc}',['as'=>'pdc.update','uses'=>'ProductsController@pdcupdate']);
+
+//dashboard-projects
+Route::resource('/dashboard-projects', 'ProjectsController');
+Route::get('/project-category',['as'=>'pjc.index','uses'=>'ProjectsController@pjcindex']);
+Route::get('/rename-project-category/{pjc}',['as'=>'pjc.rename','uses'=>'ProjectsController@pjcrename']);
+Route::post('/update-project-category/{pjc}',['as'=>'pjc.update','uses'=>'ProjectsController@pjcupdate']);
+
+Route::get('/changepassword' ,['as'=>'password.change','uses'=>'PwController@changePasswordView']);
+Route::post('/passwordupdate' ,['as'=>'password.update','uses'=>'PwController@changePassword']);
+
+Route::resource('/dashboard-gallery', 'ImageController');
+
+
+
+});
+
+
+
+
+// Route::get('/home', 'HomeController@index');
+
+
+
+
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::get('about_us',function(){
+    return view('about_us');
+});
+
+Route::get('projects/',['as'=>'projects.sorted','uses'=>'ProjectsController@populate_public_page_projects']);
+
+Route::get('services',function(){
+    return view('services');
+});
+
+
+Route::get('products/{cat?}',['as'=>'products.catwise','uses'=>'ProductsController@populate_public_page_products']);
+
+
+
+
+Route::get('career','CareerController@populate_public_page_job');
+
+
+
+Route::get('career-cv',function(){
+    return view('career-cv');
+});
+
+
+
+Route::get('internship','CareerController@populate_public_page_internship');
+
+
+
+
+Route::get('gallery','ImageController@populate_public_page_gallery');
+
+Route::get('contact-us',function(){
+    return view('contact-us');
+});
+
+
+//============These two routes were supposed to send cv and message to CMS======
+
+//Route::post('drop_cv','CareerController@save_cv');
+
+
+//Route::post('message','MessageController@send_feedback');
+
+
+Route::post('send_feedback_mail','MessageController@send_feedback_mail_public');
+
+Route::post('send_cv_mail', 'CareerController@send_cv_mail_public');

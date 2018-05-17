@@ -10,7 +10,7 @@ Create Project
 
 
 
-<link href="{{asset('select2.min.css')}}" rel="stylesheet" />
+<link href="{{asset('admin-assets/css/select2.min.css')}}" rel="stylesheet" />
 {{-- <link href="{{asset('bootstrap.min.css')}}" rel="stylesheet" /> --}}
 <style type="text/css">
   .select2-container--default .select2-selection--multiple {
@@ -18,6 +18,13 @@ Create Project
   }
 
 </style>
+<div class="container">
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default">
+    <div class="panel-heading"><h4><strong>Add Projects</strong></h4></div>
+    <div class="panel-body">
+
 
 {!!Form::open(['method'=>'POST','action'=>'ProjectsController@store', 'files'=>true])!!}
 
@@ -36,9 +43,9 @@ Create Project
 
 <div class="col-sm-offset-3 col-sm-6 col-sm-offset-3">
 <div class="form-group">
-{!!Form::label('category','Categories:')!!}
+{!!Form::label('category','Select Categories:')!!}
 
-<select class="form-control category-select" multiple="true" name="category[]">
+<select class="form-control category-select" multiple="true" name="category[]" tooltip="Click Here To Select Multiple Categories">
 
          @foreach($pjcategories as $pjc)
         
@@ -90,12 +97,20 @@ Create Project
 
 {!!Form::close()!!}
 
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 
-<script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js')}}"></script>
-{{-- <script src="{{asset('bootstrap.min.js')}}"></script> --}}
-<script src="{{asset('select2.min.js')}}"></script>
+
+
+{{-- <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js')}}"></script> --}}
+<script src="{{asset('admin-assets/js/jquery.2.1.3.min.js')}}"></script>
+<script src="{{asset('admin-assets/js/select2.min.js')}}"></script>
+
 <script type="text/javascript">
   if ($('.category-select').length > 0) {
     $('.category-select').select2({

@@ -7,7 +7,7 @@ Create Project
 
 @section('content')
 
-<link href="{{asset('select2.min.css')}}" rel="stylesheet" />
+<link href="{{asset('admin-assets/css/select2.min.css')}}" rel="stylesheet" />
 {{-- <link href="{{asset('bootstrap.min.css')}}" rel="stylesheet" /> --}}
 <style type="text/css">
   .select2-container--default .select2-selection--multiple {
@@ -15,6 +15,13 @@ Create Project
   }
 
 </style>
+
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+    <div class="panel-heading"><h4><strong>Edit Project</strong></h4></div>
+    <div class="panel-body">
 
 {!!Form::model($project,['method'=>'PATCH','action'=>['ProjectsController@update', $project->id],'files'=>true])!!}
 
@@ -80,10 +87,18 @@ Create Project
 </div>
 </div>
 
-<div class="col-sm-offset-3 col-sm-6 col-sm-offset-3">
+<div class="col-sm-offset-3 col-sm-9 col-sm-offset-3">
 
 {!!Form::submit('Update Project',['class'=>'btn btn-primary col-sm-3 pull-left'])!!}
 {!!Form::close()!!}
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
 
 
 {{-- {!!Form::open(['method'=>'DELETE','action'=>['ProductsController@destroy', $project->id]])!!}
@@ -95,9 +110,9 @@ Create Project
 
 </div>
 
-<script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js')}}"></script>
-{{-- <script src="{{asset('bootstrap.min.js')}}"></script> --}}
-<script src="{{asset('select2.min.js')}}"></script>
+<script src="{{asset('admin-assets/js/jquery.2.1.3.min.js')}}"></script>
+<script src="{{asset('admin-assets/js/select2.min.js')}}"></script>
+
 <script type="text/javascript">
   if ($('.category-select').length > 0) {
     $('.category-select').select2({

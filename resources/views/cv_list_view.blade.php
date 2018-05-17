@@ -16,7 +16,7 @@ VIEW CV UPLOADS
 
  @if(Session::has('delete'))
 
-    <div class="col-md-6 col-md-offset-3 alert alert-success alert-dismissable">
+    <div class="col-md-10 col-md-offset-1 alert alert-success alert-dismissable">
          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
          <p align="center"><strong>Success!</strong> {{session('delete')}}</p>
     </div>
@@ -27,15 +27,15 @@ VIEW CV UPLOADS
 
 <div class="container">
 <div class="row">
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-10 col-md-offset-1">
     <div class="panel panel-default">
-    <div class="panel-heading"><h4>Applicants List</strong></h4></div>
+    <div class="panel-heading"><h4><strong>Applicants List</strong></h4></div>
     <div class="panel-body">
         
        
       @if (count($datas)===0)
             <div class="alert alert-danger" role="alert">
-              <strong>Yaay!!</strong> No Applicants!
+              <p align="center"><strong>List Empty!!</strong> No Applicants!</p>
         </div>
       
         @else

@@ -14,15 +14,22 @@ Project Category
 </div>
 @endif
 
-<div class="col-sm-offset-3 col-sm-6 col-sm-offset-3">
 
 
 
 
+
+
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+    <div class="panel-heading"><h4><strong>Product Category List</strong></h4></div>
+    <div class="panel-body">
 
 
 @if(count($pdcategories)>0)
-    <div class="table-responsive">
+    <div class="table-responsive col-md-12">
 
                   <table id="message_list" class="table table-bordred table-striped table-hover toggle-circle-filled">
 
@@ -59,6 +66,11 @@ Project Category
 @else <div class="row text-center"><h4><strong>No Category Found</strong></h4></div>
 @endif
 
+</div>
+</div>
+</div>
+</div>
+</div>
 
 </div>
 @endsection

@@ -6,7 +6,7 @@ MESSAGE DETAILS
 
  @if(Session::has('mark'))
 
-    <div class="col-md-8 col-md-offset-2 alert alert-success alert-dismissable">
+    <div class="col-md-10 col-md-offset-1 alert alert-success alert-dismissable">
          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
          <p align="center"><strong>Success!</strong> {{session('mark')}}</p>
     </div>
@@ -16,7 +16,7 @@ MESSAGE DETAILS
 
        @if(Session::has('mail_sent'))
 
-    <div class="col-md-6 col-md-offset-3 alert alert-success alert-dismissable">
+    <div class="col-md-10 col-md-offset-1 alert alert-success alert-dismissable">
          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
          <p align="center"><strong>Success!</strong> {{session('mail_sent')}}</p>
     </div>

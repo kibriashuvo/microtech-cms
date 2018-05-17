@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\messages;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 use DB;
 use Illuminate\Support\Facades\Session;
@@ -21,6 +22,31 @@ class MessageController extends Controller
         $email = $request->input('email');
         $phone = $request->input('phone');
         $text = $request->input('text');
+
+
+    //=========validation======
+     $rules = array(
+            'name' => 'required',
+            'email' => 'required',
+            'text' => 'required',
+         
+        ); 
+
+    $validator = Validator::make(Input::all(),$rules);
+
+      if($validator->fails()){
+
+            Session::flash('error','Please fill out Name,Email & Message fields');
+          return redirect('contact-us');
+        }
+
+
+
+
+
+
+
+
 
       	$message = new messages;
 
@@ -140,5 +166,61 @@ class MessageController extends Controller
         return view('message_details_view')->with('data',$msg);
     }
 
+
+    public function send_feedback_mail_public(Request $request){
+
+        $name =  $request->input('name');
+        $email = $request->input('email');
+        $phone = $request->input('phone');
+        $text = $request->input('text');
+
+        $subject = 'Visitor feedback';
+
+
+    //=========validation======
+     $rules = array(
+            'name' => 'required',
+            'email' => 'required',
+            'text' => 'required',
+         
+        ); 
+
+      $validator = Validator::make(Input::all(),$rules);
+
+      if($validator->fails()){
+
+            Session::flash('error','Please fill out Name,Email & Message fields');
+          return redirect('contact-us');
+        }
+
+
+
+
+        //===============Mail===============================
+
+       $data = array(
+                  'name' => $name,
+                  'email' => $email,
+                  'phone' => $name,
+                  'text' => $text,            
+                  
+       );
+
+         Mail::queue('mail_template',$data, function ($message) use($subject){
+                  
+
+
+                      $message->from('golamkibriashuvo@gmail.com','Mail-Bot');
+
+                      $message->to('kibria.shuvo@northsouth.edu')->subject($subject);
+              });
+
+     
+
+      
+        
+        Session::flash('message_sent','Thanks for your feedback');
+        return redirect('contact-us');
+    }
 
 }

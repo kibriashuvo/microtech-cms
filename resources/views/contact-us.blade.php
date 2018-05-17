@@ -126,6 +126,15 @@
         
     @endif
 
+    @if(Session::has('error'))
+
+    <div class="alert alert-danger alert-dismissable">
+         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+         <p align="center"><strong>Sorry!</strong> {{session('error')}}</p>
+    </div>
+        
+    @endif
+
     <section id="map-embed">
       <a class="map-link" href="https://www.google.com/maps/place/Mahtab+Center,+Shahid+Syed+Nazrul+Islam+Sharani,+Dhaka,+Bangladesh/@23.735427,90.410503,16z/data=!4m5!3m4!1s0x3755b8f5ae86138d:0x9164dfa8721de836!8m2!3d23.7354266!4d90.4105027?hl=en-US">
          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7304.670192950447!2d90.410503!3d23.735427!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8f5ae86138d%3A0x9164dfa8721de836!2sMahtab+Center%2C+Shahid+Syed+Nazrul+Islam+Sharani%2C+Dhaka%2C+Bangladesh!5e0!3m2!1sen!2sbd!4v1482661379895" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -144,14 +153,14 @@
 
                         <!--Contact Form-->
                         <div class="contact-form anim-5-all col-md-7 col-sm-6 col-xs-12">
-                            <form id="contact-form" class="form-horizontal" role="form" method="POST" action="{{ url('/message') }}" enctype="multipart/form-data">    
+                            <form id="contact-form" class="form-horizontal" role="form" method="POST" action="{{ url('/send_feedback_mail') }}" enctype="multipart/form-data">    
                                   {!! csrf_field() !!}  
                                 <fieldset class="form-group">
-                                    <input type="text" name="name" value="" placeholder="Name">
+                                    <input type="text" name="name" value="" placeholder="Name" required="true">
                                 </fieldset>
 
                                 <fieldset class="form-group">
-                                    <input type="email" name="email" value="" placeholder="Email">
+                                    <input type="email" name="email" value="" placeholder="Email" required="true">
                                 </fieldset>
 
                                 <fieldset class="form-group">
@@ -159,7 +168,7 @@
                                 </fieldset>
 
                                 <fieldset class="form-group">
-                                    <textarea name="text" placeholder="Message"></textarea>
+                                    <textarea name="text" placeholder="Message" required="true"></textarea>
                                 </fieldset>
 
                               <input type="submit" name="submit" value="Send">

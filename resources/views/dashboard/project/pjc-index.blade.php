@@ -14,8 +14,16 @@ Project Category
 </div>
 @endif
 
-<div class="col-sm-offset-3 col-sm-6 col-sm-offset-3">
 
+
+
+
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+    <div class="panel-heading"><h4><strong>Project Category List</strong></h4></div>
+    <div class="panel-body">
 
 
 
@@ -56,9 +64,18 @@ Project Category
 
 </div>
 
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
 @else <div class="row text-center"><h4><strong>No Category Found</strong></h4></div>
 @endif
 
 
-</div>
+
 @endsection

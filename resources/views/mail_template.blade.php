@@ -4,13 +4,22 @@
     <meta charset="utf-8">
 </head>
 <body>
-<h2>Microtech</h2>
+<h2>Microtech Feedback</h2>
 
 <div>
-   {!! $mail_body !!}
+  <strong>Sender Name :</strong>  {!! $name !!}
 </div>
-    
-<h4>Contact us: www.microtechbd.com</h4>
+<div>
+  <strong>Email :</strong> {!! $email !!}
+</div>
+<div>
+  <strong>Phone :</strong> {!! $phone !!}
+</div>
+<div>
+   <strong>Message :</strong> <br> {!! $text !!}
+</div>
+ 
+<h4>This mail is automatically genereated. Do not reply to this mail</h4>  
 
 </body>
 </html>

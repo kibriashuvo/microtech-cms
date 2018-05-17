@@ -16,6 +16,14 @@
     <link href="css/responsive.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
     
+       <!--    google fonts exo-->
+   <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
+    
+    
+    
+    <link href="css/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+
     
 
     <style media="screen">
@@ -174,8 +182,8 @@
                         <div class="service-posts clearfix col-md-9 col-sm-12">
 
                              @if (count($datas)===0)
-                                <div class="alert alert-danger" role="alert">
-                                      <strong>Sorry!!</strong> Currenly there are no job openings!
+                                <div class="alert alert-info" role="alert">
+                                      <p align="center"><strong>Sorry!!</strong> Currenly there are no job openings!</p>
                                 </div>
                               
                                 @endif
